@@ -49,6 +49,11 @@ def gen_table(req):
 def get_home(req):
     return FileResponse('index.html')
 
+def get_image(req):
+    fileName = req.matchdict['imageName']
+
+    return FileResponse(f'./public/images/{fileName}'.lower())
+
 def main():
     with Configurator() as config:
         config.include('pyramid_jinja2')
@@ -60,12 +65,16 @@ def main():
         config.add_route('gen_table', '/table/{start_height}_{end_height}_{start_age}_{end_age}')
         config.add_view(gen_table, route_name='gen_table')
 
+        config.add_route('get_image', '/images/{imageName}')
+        config.add_view(get_image, route_name='get_image')
+
         config.add_static_view(name='/', path='./public', cache_max_age=3600)
+        
 
         app = config.make_wsgi_app()
 
     server = make_server('0.0.0.0', 80, app)
-    print('Web server started on: http://0.0.0.0')
+    print('Web server started on: http://localhost:8080')
     server.serve_forever()
 
 if __name__ == '__main__':

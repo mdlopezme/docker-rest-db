@@ -8,10 +8,13 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Copy the requirements.txt file into the container
-COPY ./src/requirements.txt .
+COPY ./src .
 
 # Install the required dependencies
 RUN pip install -r requirements.txt
 
 # Tell Docker to listen to traffic on this port inside the container
 EXPOSE 80
+
+# Start the Pyramid web server
+CMD ["python3", "server.py"]

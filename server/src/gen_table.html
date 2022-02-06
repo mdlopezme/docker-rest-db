@@ -2,19 +2,23 @@
   <table class="stylish-table" border="1">
     <thead>
       <tr>
-        <th>ID</th><th>Name</th><th>Owner</th><th>Height</th><th>Age</th><th>Photo</th>
+        <th>ID</th><th>Name of the Piece</th><th>Artist</th><th>Height of Artist</th><th>Age of Artist</th><th>Photo</th>
       </tr>
     </thead>
 
     <tbody>
       {% for record in records %}
       <tr>
-        <td>{{ record[0] }}</td>
-        <td>{{ record[1] }}</td>
-        <td>{{ record[2] }}</td>
-        <td>{{ record[3] }}</td>
-        <td>{{ record[4] }}</td>
-        <td><img src="/images/{{record[1]}}" alt="{{record[2]}}" height="200px"></td>
+        <td style="text-align:center">{{ record[0] }}</td>
+        <td style="text-align:center">{{ record[1] }}</td>
+        <td style="text-align:center">{{ record[2] }}</td>
+        <td style="text-align:center">{{ record[3] }} cm</td>
+        <td style="text-align:center">{{ record[4] }}</td>
+        <td style="text-align:center">
+          <a href="/images/{{record[1]}}">
+            <img src="/images/{{record[1]}}" alt="{{record[2]}}" height="200px">
+          </a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

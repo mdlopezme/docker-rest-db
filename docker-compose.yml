@@ -2,19 +2,15 @@ version: '3'
 
 services:
   web-server:
+    image: mdlopezme/gen_server:latest
     build:
       context: ./server
     ports:
       - 80:80
     # command: python server.py # automatically start the server when the container starts
-    command: tail -f /dev/null # just keep it running for manual web serving
+    # command: tail -f /dev/null # just keep it running for manual web serving
     env_file:
       ./credentials.env
-    volumes:
-      - ./server/src:/app
+    # volumes:
+    #   - ./server/src:/app
     container_name: 140-web-server
-    depends_on:
-      - mysql-server
-
-volumes:
-  persistent_db:
